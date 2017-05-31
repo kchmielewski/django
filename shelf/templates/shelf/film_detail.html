@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+<div><a href="{% url 'film:film-list' %}">Powrót do listy filmów</a></div>
+Profil filmu: {{object.title}}
+{% endblock %}
