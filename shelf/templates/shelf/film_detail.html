@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
-{% block 'content' %}
-<div><a href="{% url 'film:film-list' %}">Powrót do listy filmów</a></div>
-Profil filmu: {{object.title}}
+{% block content %}
+
+        <h2>Film:</h2>
+       <p class="detail">Tytuł: {{object.title}}<br/>
+        Rodzaj: {{object.type}}<br/>
+        Cena: {{ object.price }}<br/>
+        Rok wydania: {{object.production_date}}<br/>
+               Opis: {{object.description }}</p><br/>
+
 {% endblock %}

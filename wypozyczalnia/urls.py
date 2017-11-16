@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
-
+from shelf.views import MainPageView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^shelf/', include('shelf.urls', namespace ='film'))
+    url(r'^shelf/', include('shelf.urls', namespace ='shelf')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^rent/', include('rent.urls', namespace='rent')),
+
+    url(r'^$', MainPageView.as_view(), name = 'main-page'),
+
 ]

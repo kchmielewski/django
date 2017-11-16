@@ -31,13 +31,23 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'shelf',
+    'user',
+    'rent',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shelf'
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'bootstrap3',
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -67,10 +77,18 @@ TEMPLATES = [
         },
     },
 ]
+AUTHENTICATION_BACKENDS = (
 
+'django.contrib.auth.backends.ModelBackend',
+'allauth.account.auth_backends.AuthenticationBackend',
+)
+SITE_ID = 1
 WSGI_APPLICATION = 'wypozyczalnia.wsgi.application'
 
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+LOGIN_URL = 'main-page'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -114,8 +132,21 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'user.Wypuser'
 
+LOGIN_REDIRECT_URL = 'main-page'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS =[
+    ("media",MEDIA_ROOT),
+]
+CRISPY_TEMPLATE_PACK='bootstrap3'

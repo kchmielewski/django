@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <ul>
+            {% for director in object_list %}
+                <li><a class = "detail" href="{% url 'shelf:director-detail' director.id %}"> {{director}}</a></li>
+            {% endfor %}
+        </ul>
+{% endblock %}

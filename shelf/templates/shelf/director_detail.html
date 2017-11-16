@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        Profil reżysera: {{object}}
+        <h2>Filmy:</h2>
+        <ul>{% for film in object.film_set.all %}
+            <li><a class = "detail" href="{{film.get_absolute_url}}"> {{film.title}}</a></li>
+            {% endfor %}
+        </ul>
+
+{% endblock %}
